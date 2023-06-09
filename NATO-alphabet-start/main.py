@@ -18,10 +18,21 @@ for (index, row) in student_data_frame.iterrows():
     pass
 
 # Keyword Method with iterrows()
-# {new_key:new_value for (index, row) in df.iterrows()}
 
 #TODO 1. Create a dictionary in this format:
-{"A": "Alfa", "B": "Bravo"}
+df = pandas.read_csv("nato_phonetic_alphabet.csv")
+# for (index, row) in df.iterrows():
+#     print(row.letter)
+dict = {row.letter:row.code for (index, row) in df.iterrows()}
+print(dict)
 
 #TODO 2. Create a list of the phonetic code words from a word that the user inputs.
 
+sentance = input("whats the word you would like to spell out: ")
+list_sentance = list(sentance)
+# list = []
+#
+# for letter in list_sentance:
+list = [row.code for letter in list_sentance for (index, row) in df.iterrows() if row.letter == letter.upper() ]
+#list = [row.code for letter in list_sentance if row.letter == letter]
+print(f"Your spelling is: \n{list}")
